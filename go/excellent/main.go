@@ -5,6 +5,7 @@ import "testing"
 
 func TestEvenOrOdd(t *testing.T){
 	result:= EvenOrOdd(4)
+	
 	if result != "even"{
 		t.Errorf("Expected even but got %s", result)
 	}
