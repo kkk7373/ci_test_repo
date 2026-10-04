@@ -1,9 +1,12 @@
 package main
 
-func EvenOrOdd(number int) string{
-	if number%2 ==0 {
-		return "even"
-	}else{
-		return "odd"
+
+import "testing"
+
+func TestEvenOrOdd(t *testing.T){
+	result:= EvenOrOdd(4)
+	
+	if result != "even"{
+		t.Errorf("Expected even but got %s", result)
 	}
 }

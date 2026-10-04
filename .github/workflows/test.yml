@@ -2,14 +2,16 @@ name: Test
 
 on:
   pull_request:
-    paths: ["go/**/*.go"]
+    types: [opened, synchronize, reopened] #アクティビティタイプを指定。
+    paths: ["go/**/*.go"] #パスのフィルターとpaths-ignoreは同時に使えない。** サブディレクトリを含めた、goディレクトリ配下の全てのgoファイルを対象にする。
+    branches: [main] # pash ブランチを同時に指定すると、AND条件になる。
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v4 #リポジトリのソースをチェックアウト
+      - uses: actions/setup-go@v5 #　セットアップアクションで、言語をセットアップ。デフォルトでキャッシュ有効化されている。
         with:
           go-version: 1.22
       - run: go test go/excellent/*.go
